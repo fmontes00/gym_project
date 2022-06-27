@@ -1,0 +1,14 @@
+<h1>Home page</h1>
+
+<br>
+<br>
+
+{% for e in equip %}
+
+<h3>{{ e.name }}</h3>
+<h3>{{ e.description }}</h3>
+<h4>{{ e.exercise }}</h4>
+
+<br>
+
+{% endfor %}
