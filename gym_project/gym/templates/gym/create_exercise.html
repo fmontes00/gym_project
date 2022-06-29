@@ -1,0 +1,10 @@
+<h1>Creation page</h1>
+
+
+
+<form method="POST">
+    <h3>Exercise Creation</h3>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create</button>
+</form>
