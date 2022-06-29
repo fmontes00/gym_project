@@ -1,3 +1,18 @@
 from django.db import models
 
 # Create your models here.
+class Exercise(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=200)
+    equipment = models.ForeignKey("gym.Equipment", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
+
+class Equipment(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name

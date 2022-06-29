@@ -1,0 +1,35 @@
+<h1>Home page</h1>
+
+<br>
+<br>
+
+<!-- {% for equipment in equipments %}
+
+    version iterando sobre todos los exercises
+
+<h3>{{ equipment.name }}</h3>
+<h3>{{ equipment.description }}</h3> 
+    {% for exercise in exercises %}
+        {% if exercise.equipment  == equipment %}
+            <h5>{{ exercise.name }}</h5>
+        {% endif %}
+    {% endfor %}
+<br>
+
+{% endfor %} -->
+
+
+
+
+{% for equipment in equipments %}
+
+<!-- version que itera sobre la relacion inversa a la key en equipment -->
+
+<h3>{{ equipment.name }}</h3>
+<!-- <h3>{{ equipment.description }}</h3> -->
+    {% for exercise in equipment.exercise_set.all %}     
+        <h5>{{ exercise.name }}</h5>       
+    {% endfor %}
+<br>
+
+{% endfor %}
