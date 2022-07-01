@@ -1,9 +1,9 @@
 from django.urls import include, path
 from . import views
-
+from .views import HomeView, ExerciseFormView, EquipmentFormView
 
 urlpatterns = [
-    path("", views.home, name="home"),
-    path("createExercise", views.create_exercise, name="create_exercise"),
-    path("createEquipment", views.create_equipment, name="create_equipment"),
+    path("", HomeView.as_view(), name="home"),
+    path("createExercise", ExerciseFormView.as_view(), name="create_exercise"),
+    path("createEquipment", EquipmentFormView.as_view(), name="create_equipment"),
 ]
