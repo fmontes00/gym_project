@@ -16,7 +16,7 @@ from django.views.generic.edit import FormView
 class HomeView(View):
     def get(self, request):
         equipments = Equipment.objects.all()
-        return render(request, "gym/home.html",{"equipments": equipments})
+        return render(request, "gym/home.html", {"equipments": equipments})
 
 
 # class HomeView(TemplateView):
@@ -37,6 +37,7 @@ class HomeView(View):
 #         form.save()
 #         return super().form_valid(form)
 
+
 class ExerciseFormView(View):
 
     form_class = ExerciseForm
@@ -44,12 +45,11 @@ class ExerciseFormView(View):
     def get(self, request):
         form = self.form_class
         return render(request, "gym/create_exercise.html", {"form": form})
-    
+
     def post(self, request):
-        form = self.form_class(request.POST)               #ExerciseForm(request.POST)
+        form = self.form_class(request.POST)  # ExerciseForm(request.POST)
         form.save()
         return redirect("home")
-
 
 
 # def create_exercise(request):
@@ -76,10 +76,10 @@ class EquipmentFormView(View):
 
     form_class = EquipmentForm
 
-    def get(self,request):
+    def get(self, request):
         form = self.form_class
-        return render(request,"gym/create_equipment.html", {"form": form})
-    
+        return render(request, "gym/create_equipment.html", {"form": form})
+
     def post(self, request):
         form = self.form_class(request.POST)
         form.save()
