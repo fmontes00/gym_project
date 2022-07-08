@@ -9,7 +9,7 @@ from django.contrib.auth import login, logout, authenticate
 
 def signup_user(request):
     if request.method == "GET":
-        return render(request, "user/signupuser.html", {"form": UserCreationForm()})
+        return render(request, "accounts/signupuser.html", {"form": UserCreationForm()})
     else:
         if request.POST["password1"] == request.POST["password2"]:
             try:
@@ -23,7 +23,7 @@ def signup_user(request):
             except IntegrityError:
                 return render(
                     request,
-                    "user/signupuser.html",
+                    "accounts/signupuser.html",
                     {
                         "form": UserCreationForm(),
                         "error": "username alredy taken, select a new one",
@@ -32,14 +32,14 @@ def signup_user(request):
         else:
             return render(
                 request,
-                "user/signupuser.html",
+                "accounts/signupuser.html",
                 {"form": UserCreationForm(), "error": "passwords did not match"},
             )
 
 
 def login_user(request):
     if request.method == "GET":
-        return render(request, "user/login.html", {"form": AuthenticationForm()})
+        return render(request, "accounts/login.html", {"form": AuthenticationForm()})
     else:
         user = authenticate(
             request,
@@ -49,7 +49,7 @@ def login_user(request):
         if user is None:
             return render(
                 request,
-                "user/login.html",
+                "accounts/login.html",
                 {
                     "form": AuthenticationForm(),
                     "error": "username and password did not match",
@@ -58,3 +58,4 @@ def login_user(request):
         else:
             login(request, user)
             return redirect("home")
+# Create your views here.
