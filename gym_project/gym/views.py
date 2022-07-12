@@ -19,6 +19,10 @@ class HomeView(View):
         return render(request, "gym/home.html", {"equipments": equipments})
 
 
+def homepage(request):
+    return render(request, "gym/homepage.html")
+
+
 # class HomeView(TemplateView):
 #     template_name = "gym/home.html"
 
