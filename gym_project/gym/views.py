@@ -1,6 +1,6 @@
 from django.views import View
 from django.shortcuts import redirect, render
-from .models import Equipment
+from .models import Equipment, Routine
 from .forms import EquipmentForm, ExerciseForm
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
@@ -98,3 +98,8 @@ class EquipmentFormView(View):
 #         form = EquipmentForm(request.POST)
 #         form.save()
 #         return redirect("home")
+
+
+def routine(request):
+    my_routine = Routine.objects.filter()# filter by --> user = request.user
+    return render(request, 'gym/my_routine.html', {'my_routine': my_routine})

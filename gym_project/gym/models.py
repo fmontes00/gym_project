@@ -1,6 +1,7 @@
 
+from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
+
 
 
 # Create your models here.
@@ -30,7 +31,7 @@ class Routine(models.Model):
     exercises = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     completed = models.DateTimeField(null=True, blank=True)
-    #user = models.ForeignKey("accounts.User", on_delete=models.CASCADE)
+    #user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
