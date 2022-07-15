@@ -1,7 +1,7 @@
 from django.db import IntegrityError
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
+from accounts.forms import UserForm
 from django.contrib.auth import login, logout, authenticate
 from .models import User
 
@@ -10,7 +10,7 @@ from .models import User
 
 def signup_user(request):
     if request.method == "GET":
-        return render(request, "accounts/signupuser.html", {"form": UserCreationForm()})
+        return render(request, "accounts/signupuser.html", {"form": UserForm()})
     else:
         if request.POST["password1"] == request.POST["password2"]:
             try:
@@ -26,7 +26,7 @@ def signup_user(request):
                     request,
                     "accounts/signupuser.html",
                     {
-                        "form": UserCreationForm(),
+                        "form": UserForm(),
                         "error": "username alredy taken, select a new one",
                     },
                 )
@@ -34,7 +34,7 @@ def signup_user(request):
             return render(
                 request,
                 "accounts/signupuser.html",
-                {"form": UserCreationForm(), "error": "passwords did not match"},
+                {"form": UserForm(), "error": "passwords did not match"},
             )
 
 

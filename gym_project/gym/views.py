@@ -1,7 +1,9 @@
+from urllib.request import Request
+from black import format_cell
 from django.views import View
 from django.shortcuts import redirect, render
 from .models import Equipment, Routine
-from .forms import EquipmentForm, ExerciseForm
+from .forms import EquipmentForm, ExerciseForm, RoutineForm
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 
@@ -101,5 +103,15 @@ class EquipmentFormView(View):
 
 
 def routine(request):
-    my_routine = Routine.objects.filter()# filter by --> user = request.user
-    return render(request, 'gym/my_routine.html', {'my_routine': my_routine})
+    if request.method == "GET":
+        my_routine = Routine.objects.all()
+        return render(request, "gym.my_routine.html", {"my_routine": my_routine})
+    else:
+        form = RoutineForm(request.POST)
+        form.save()
+        return redirect("home")
+
+
+
+    # my_routine = Routine.objects.all()# filter by --> user = request.user
+    # return render(request, 'gym/my_routine.html', {'my_routine': my_routine})
