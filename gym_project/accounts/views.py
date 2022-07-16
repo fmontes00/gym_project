@@ -1,7 +1,7 @@
 from django.db import IntegrityError
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from accounts.forms import UserForm
+from accounts.forms import UserForm, AuthForm
 from django.contrib.auth import login, logout, authenticate
 from .models import User
 
@@ -12,11 +12,11 @@ def signup_user(request):
     if request.method == "GET":
         return render(request, "accounts/signupuser.html", {"form": UserForm()})
     else:
-        if request.POST["password1"] == request.POST["password2"]:
+        if request.POST["password"] :
             try:
                 user = User.objects.create_user(
-                    username=request.POST["username"],
-                    password=request.POST["password1"],
+                    username=request.POST["email"],
+                    password=request.POST["password"],
                 )
                 user.save()
                 login(request, user)
@@ -40,11 +40,11 @@ def signup_user(request):
 
 def login_user(request):
     if request.method == "GET":
-        return render(request, "accounts/login.html", {"form": AuthenticationForm()})
+        return render(request, "accounts/login.html", {"form": AuthForm()})
     else:
         user = authenticate(
             request,
-            username=request.POST["username"],
+            username=request.POST["email"],
             password=request.POST["password"],
         )
         if user is None:
@@ -52,7 +52,7 @@ def login_user(request):
                 request,
                 "accounts/login.html",
                 {
-                    "form": AuthenticationForm(),
+                    "form": AuthForm(),
                     "error": "username and password did not match",
                 },
             )
