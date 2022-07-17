@@ -18,4 +18,4 @@ class EquipmentForm(ModelForm):
 class RoutineForm(ModelForm):
     class Meta:
         model = Routine
-        fields = ["title","exercises", "completed", "user"]
+        fields = ["title","day","exercises", "completed"]

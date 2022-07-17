@@ -8,4 +8,5 @@ urlpatterns = [
     path("createEquipment", EquipmentFormView.as_view(), name="create_equipment"),
     path("homepage/",views.homepage, name='homepage'),
     path("myroutine/",views.routine, name='myroutine'),
+    path("createRoutine/",views.create_routine, name='createRoutine'),
 ]

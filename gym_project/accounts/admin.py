@@ -11,7 +11,7 @@ class CustomUserAdmin(UserAdmin):
     #fields = (*UserAdmin.fieldsets,)
 
 
-admin.site.register(User, UserAdmin)
+admin.site.register(User)
 
 
 # Register your models here.

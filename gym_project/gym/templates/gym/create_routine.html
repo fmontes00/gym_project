@@ -1,0 +1,26 @@
+{% extends 'gym/base.html' %}
+
+
+{% block content %}
+
+<h2>Create routine</h2>
+
+<h3>{{ error }}</h3>
+
+
+<form method="POST">
+
+    {% csrf_token %}
+    
+    {{ routine_form.as_p }}
+
+    <button type="submit">Create Routine</button>
+
+
+
+</form>
+
+
+
+
+{% endblock %}

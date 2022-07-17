@@ -58,7 +58,7 @@ def login_user(request):
             )
         else:
             login(request, user)
-            return redirect("home")
+            return redirect("createRoutine")
 
 def logout_user(request):
     if request.method == 'POST':

@@ -25,14 +25,12 @@ class Equipment(models.Model):
 
 class Routine(models.Model):
 
-    days = [("m","Monday"),("t","Tuesday"),("w","Wednesday"),("h","Thursday"),("f", "Friday")]
-
     title = models.CharField(max_length=50)
-    day = models.DateField(choices=days)
+    day = models.CharField(max_length=50)
     exercises = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
-    completed = models.DateTimeField(null=True, blank=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE)
+    completed = models.BooleanField(default=False)
+    
 
     def __str__(self):
         return self.title
