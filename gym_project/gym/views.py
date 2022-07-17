@@ -102,20 +102,39 @@ class EquipmentFormView(View):
 #         return redirect("home")
 
 
-def create_routine(request):
-    if request.method == 'GET':
-        routine_form = RoutineForm()
-        return render(request, "gym/create_routine.html", {"routine_form" : routine_form})
-    else:
-        routine_form = RoutineForm(request.POST)
-        routine_form.save()
-        return redirect("myroutine")
+# def create_routine(request):
+#     if request.method == 'GET':
+#         routine_form = RoutineForm()
+#         return render(request, "gym/create_routine.html", {"routine_form" : routine_form})
+#     else:
+#         routine_form = RoutineForm(request.POST)
+#         new_routine_form = routine_form.save(commit=False)
+#         new_routine_form.save()
+#         return redirect("myroutine")
+
+class routine_form_view(FormView):
+    template_name = "gym/create_routine.html"
+    form_class = RoutineForm
+    success_url = "/gym/myroutine/"
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
 
 
+# class EquipmentFormView(FormView):
+#     template_name = "gym/create_equipment.html"
+#     form_class = EquipmentForm
+#     success_url = "/gym"
+
+#     def form_valid(self, form):
+#         form.save()
+#         return super().form_valid(form)
 
 
 def routine(request):
-    my_routine = Routine.objects.filter()
+    my_routine = Routine.objects.filter(user = request.user)
+    return render(request, 'gym/my_routine.html', {'my_routine': my_routine})
 
 
 
