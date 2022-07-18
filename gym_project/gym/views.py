@@ -112,12 +112,12 @@ class EquipmentFormView(View):
 #         new_routine_form.save()
 #         return redirect("myroutine")
 
-class routine_form_view(FormView):
+class RoutineFormView(FormView):
     template_name = "gym/create_routine.html"
     form_class = RoutineForm
-    success_url = "/gym/myroutine/"
+    success_url = "http://127.0.0.1:8000/gym/myroutine"
 
-    def form_valid(self, form):
+    def form_valid(self, form):  # -----> doesn't work (integrity error gym user id null)
         form.save()
         return super().form_valid(form)
 
