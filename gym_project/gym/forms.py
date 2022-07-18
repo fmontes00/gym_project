@@ -1,6 +1,6 @@
 
 from django.forms import ModelForm
-from .models import Equipment, Exercise, Routine
+from .models import Equipment, Exercise
 
 
 class ExerciseForm(ModelForm):
@@ -15,7 +15,3 @@ class EquipmentForm(ModelForm):
         fields = ["name", "description"]
 
 
-class RoutineForm(ModelForm):
-    class Meta:
-        model = Routine
-        fields = ["title","day","exercises", "completed"]

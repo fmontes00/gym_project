@@ -1,11 +1,11 @@
 
 from django.views import View
 from django.shortcuts import redirect, render
-from .models import Equipment, Routine
-from .forms import EquipmentForm, ExerciseForm, RoutineForm
+from .models import Equipment
+from .forms import EquipmentForm, ExerciseForm
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
-from accounts.models import User
+
 
 # Create your views here.
 
@@ -112,14 +112,6 @@ class EquipmentFormView(View):
 #         new_routine_form.save()
 #         return redirect("myroutine")
 
-class RoutineFormView(FormView):
-    template_name = "gym/create_routine.html"
-    form_class = RoutineForm
-    success_url = "http://127.0.0.1:8000/gym/myroutine"
-
-    def form_valid(self, form):  # -----> doesn't work (integrity error gym user id null)
-        form.save()
-        return super().form_valid(form)
 
 
 # class EquipmentFormView(FormView):
@@ -131,10 +123,6 @@ class RoutineFormView(FormView):
 #         form.save()
 #         return super().form_valid(form)
 
-
-def routine(request):
-    my_routine = Routine.objects.filter(user = request.user)
-    return render(request, 'gym/my_routine.html', {'my_routine': my_routine})
 
 
 
