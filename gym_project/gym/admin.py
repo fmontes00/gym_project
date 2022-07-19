@@ -6,4 +6,3 @@ from .models import Exercise, Equipment
 
 admin.site.register(Exercise)
 admin.site.register(Equipment)
-

@@ -1,4 +1,3 @@
-
 from django.forms import ModelForm
 from .models import Equipment, Exercise
 
@@ -13,5 +12,3 @@ class EquipmentForm(ModelForm):
     class Meta:
         model = Equipment
         fields = ["name", "description"]
-
-

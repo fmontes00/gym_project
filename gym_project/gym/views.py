@@ -1,4 +1,3 @@
-
 from django.views import View
 from django.shortcuts import redirect, render
 from .models import Equipment
@@ -113,7 +112,6 @@ class EquipmentFormView(View):
 #         return redirect("myroutine")
 
 
-
 # class EquipmentFormView(FormView):
 #     template_name = "gym/create_equipment.html"
 #     form_class = EquipmentForm
@@ -124,7 +122,5 @@ class EquipmentFormView(View):
 #         return super().form_valid(form)
 
 
-
-
-    # my_routine = Routine.objects.all()# filter by --> user = request.user
-    # return render(request, 'gym/my_routine.html', {'my_routine': my_routine})
+# my_routine = Routine.objects.all()# filter by --> user = request.user
+# return render(request, 'gym/my_routine.html', {'my_routine': my_routine})

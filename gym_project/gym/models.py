@@ -1,5 +1,3 @@
-
-
 from django.conf import settings
 from django.db import models
 from gym_project import settings
@@ -21,4 +19,3 @@ class Equipment(models.Model):
 
     def __str__(self):
         return self.name
-
