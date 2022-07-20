@@ -8,10 +8,11 @@ from .models import CustomUser
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
     model = CustomUser
     list_display = [
-        "email",
         "username",
+        "email",
         "is_athlete",
         "is_staff",
     ]
