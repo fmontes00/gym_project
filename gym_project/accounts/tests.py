@@ -19,7 +19,7 @@ class SignupPageTests(TestCase):
         response = self.client.post(
             reverse("signup"),
             {
-                "username": "testuser",
+                "username": "testuser1",
                 "password1": "testpass123",
                 "password2": "testpass123",
                 "is_athlete": "True",
@@ -28,5 +28,5 @@ class SignupPageTests(TestCase):
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(get_user_model().objects.all().count(), 1)
-        self.assertEqual(get_user_model().objects.all()[0].username, "testuser")
+        self.assertEqual(get_user_model().objects.all()[0].username, "testuser1")
         self.assertEqual(get_user_model().objects.all()[0].is_athlete, True)
