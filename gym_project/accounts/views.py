@@ -1,7 +1,5 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.views import LoginView   
+from django.contrib.auth.views import LoginView , LogoutView
 # Create your views here.
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
@@ -22,3 +20,6 @@ class HomeView(TemplateView):
 
 class LoginView2(LoginView):
     template_name = "accounts/login.html"
+
+class LogoutView2(LogoutView):
+    template_name = "accounts/base.html"
