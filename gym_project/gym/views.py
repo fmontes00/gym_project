@@ -17,7 +17,7 @@ from django.views.generic.edit import FormView
 class HomeView(View):
     def get(self, request):
         equipments = Equipment.objects.all()
-        routines = Routine.objects.all()
+        routines = Routine.objects.filter(user = request.user)
         return render(request, "gym/home.html", {"equipments": equipments, "routines":routines})
 
 
