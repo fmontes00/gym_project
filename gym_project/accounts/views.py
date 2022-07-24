@@ -13,10 +13,6 @@ class SignUpView(CreateView):
     template_name = "accounts/signup.html"
 
 
-class HomeView(TemplateView):
-    def get(self, request):
-        return render(request, "accounts/home.html")
-
 
 class LoginView2(LoginView):
     template_name = "accounts/login.html"

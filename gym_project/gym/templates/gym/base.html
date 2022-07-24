@@ -2,6 +2,9 @@
 
 Logged in as  {{ user.username }}
 
+{% if user.is_athlete %}
+    <h5>athlete</h5>
+{% endif %}
 
 <form action="{% url 'logout' %}" method="POST">
     {% csrf_token %}

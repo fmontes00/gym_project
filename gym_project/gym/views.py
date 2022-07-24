@@ -1,7 +1,7 @@
 from django.views import View
 from django.shortcuts import redirect, render
-from .models import Equipment
-from .forms import EquipmentForm, ExerciseForm
+from .models import Equipment, Routine
+from .forms import EquipmentForm, ExerciseForm, RoutineForm
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 
@@ -17,7 +17,8 @@ from django.views.generic.edit import FormView
 class HomeView(View):
     def get(self, request):
         equipments = Equipment.objects.all()
-        return render(request, "gym/home.html", {"equipments": equipments})
+        routines = Routine.objects.all()
+        return render(request, "gym/home.html", {"equipments": equipments, "routines":routines})
 
 
 def homepage(request):
@@ -121,6 +122,20 @@ class EquipmentFormView(View):
 #         form.save()
 #         return super().form_valid(form)
 
+class RoutineFormView(FormView):
+    template_name = "gym/create_routine.html"
+    form_class = RoutineForm
+    success_url = "/gym"
 
-# my_routine = Routine.objects.all()# filter by --> user = request.user
-# return render(request, 'gym/my_routine.html', {'my_routine': my_routine})
+    def form_valid(self, form):
+        form = form.save(commit=False)
+        form.user = self.request.user
+        form.save()
+        return super().form_valid(form)
+
+
+    # def get_initial(self):
+    #     initial = super(RoutineFormView, self).get_initial()
+    #     if self.request.user.is_authenticated:
+    #         initial.update({'user': self.request.user})
+    #     return initial

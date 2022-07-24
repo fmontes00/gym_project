@@ -25,6 +25,18 @@
 {% endfor %} -->
 
 
+{% for routine in routines %}
+
+<h3>{{ routine.title }}</h3>
+<h4>{{ routine.day }}</h4>
+<ul>
+    
+    {{ routine.routine }}
+</ul>
+
+{% endfor %}
+
+
 
 
 {% for equipment in equipments %}
