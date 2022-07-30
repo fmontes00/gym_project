@@ -4,6 +4,7 @@ from .models import Equipment, Routine
 from .forms import EquipmentForm, ExerciseForm, RoutineForm
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -14,7 +15,7 @@ from django.views.generic.edit import FormView
 #     return render(request, "gym/home.html", {"equipments": equipments})
 
 
-class HomeView(View):
+class HomeView(LoginRequiredMixin, View):
     def get(self, request):
         equipments = Equipment.objects.all()
         routines = Routine.objects.filter(user = request.user)
@@ -44,7 +45,7 @@ def homepage(request):
 #         return super().form_valid(form)
 
 
-class ExerciseFormView(View):
+class ExerciseFormView(LoginRequiredMixin ,View):
 
     form_class = ExerciseForm
 
@@ -78,7 +79,7 @@ class ExerciseFormView(View):
 #         return super().form_valid(form)
 
 
-class EquipmentFormView(View):
+class EquipmentFormView(LoginRequiredMixin ,View):
 
     form_class = EquipmentForm
 
@@ -122,7 +123,7 @@ class EquipmentFormView(View):
 #         form.save()
 #         return super().form_valid(form)
 
-class RoutineFormView(FormView):
+class RoutineFormView(LoginRequiredMixin ,FormView):
     template_name = "gym/create_routine.html"
     form_class = RoutineForm
     success_url = "/gym"
