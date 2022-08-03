@@ -13,7 +13,8 @@ class EquipmentForm(ModelForm):
         model = Equipment
         fields = ["name", "description"]
 
+
 class RoutineForm(ModelForm):
     class Meta:
         model = Routine
-        fields = ["title","day","routine","is_completed"]
+        fields = ["title", "day", "routine", "is_completed"]

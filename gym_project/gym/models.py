@@ -22,6 +22,7 @@ class Equipment(models.Model):
     def __str__(self):
         return self.name
 
+
 class Routine(models.Model):
     title = models.CharField(max_length=200)
     day = models.CharField(max_length=100)
@@ -31,4 +32,3 @@ class Routine(models.Model):
 
     def __str__(self):
         return self.title
-

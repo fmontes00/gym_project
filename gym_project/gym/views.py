@@ -18,8 +18,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class HomeView(LoginRequiredMixin, View):
     def get(self, request):
         equipments = Equipment.objects.all()
-        routines = Routine.objects.filter(user = request.user)
-        return render(request, "gym/home.html", {"equipments": equipments, "routines":routines})
+        routines = Routine.objects.filter(user=request.user)
+        return render(
+            request, "gym/home.html", {"equipments": equipments, "routines": routines}
+        )
 
 
 def homepage(request):
@@ -45,7 +47,7 @@ def homepage(request):
 #         return super().form_valid(form)
 
 
-class ExerciseFormView(LoginRequiredMixin ,View):
+class ExerciseFormView(LoginRequiredMixin, View):
 
     form_class = ExerciseForm
 
@@ -79,7 +81,7 @@ class ExerciseFormView(LoginRequiredMixin ,View):
 #         return super().form_valid(form)
 
 
-class EquipmentFormView(LoginRequiredMixin ,View):
+class EquipmentFormView(LoginRequiredMixin, View):
 
     form_class = EquipmentForm
 
@@ -123,7 +125,8 @@ class EquipmentFormView(LoginRequiredMixin ,View):
 #         form.save()
 #         return super().form_valid(form)
 
-class RoutineFormView(LoginRequiredMixin ,FormView):
+
+class RoutineFormView(LoginRequiredMixin, FormView):
     template_name = "gym/create_routine.html"
     form_class = RoutineForm
     success_url = "/gym"
@@ -133,7 +136,6 @@ class RoutineFormView(LoginRequiredMixin ,FormView):
         form.user = self.request.user
         form.save()
         return super().form_valid(form)
-
 
     # def get_initial(self):
     #     initial = super(RoutineFormView, self).get_initial()
