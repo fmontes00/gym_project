@@ -26,9 +26,28 @@ class Equipment(models.Model):
 class Routine(models.Model):
     title = models.CharField(max_length=200)
     day = models.CharField(max_length=100)
-    routine = models.TextField()
+    content = models.TextField()
     is_completed = models.BooleanField(default=False)
-    user = models.ForeignKey("accounts.CustomUser", on_delete=models.CASCADE)
+    user = models.ManyToManyField("accounts.CustomUser")
 
     def __str__(self):
         return self.title
+
+class RoutineBlock(models.Model):
+    METCON = "mc"
+    AMRAP ="am"
+    TABATA = "tb"
+    OTM = "ot"
+
+    routine_type_choices = [
+        (METCON, "Metcon"),
+        (AMRAP, "Amrap"),
+        (TABATA, "Tabata"),
+        (OTM, "OTM"),
+    ]
+
+    routine = models.ForeignKey(Routine, on_delete=models.CASCADE)
+   # order = ver django-ordered-model
+    exercises = models.ManyToManyField(Exercise)
+    classification = models.CharField(choices=routine_type_choices)
+

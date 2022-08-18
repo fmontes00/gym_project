@@ -6,13 +6,10 @@ class Command(BaseCommand):
     help = "count how many routines each user finish this month"
 
     def handle(self, *args, **kwargs):
-        routines = Routine.objects.all()
-        li = []
-        count = 0
-        for routine in routines:
-            if routine.is_completed:
-                count += 1
-                li.append(routine.user)
+        routines = Routine.objects.annotate()
 
-        for elem in li:
-            self.stdout.write(str(elem))
+
+        #my_dict = {routine.user:routine.is_completed for routine in routines}
+
+
+        self.stdout.write(str(routines))
