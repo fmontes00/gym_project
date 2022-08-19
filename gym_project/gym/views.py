@@ -1,7 +1,7 @@
 from django.views import View
 from django.shortcuts import redirect, render
-from .models import Equipment, Routine
-from .forms import EquipmentForm, ExerciseForm, RoutineForm
+from .models import Equipment, Routine, RoutineBlock
+from .forms import EquipmentForm, ExerciseForm, RoutineForm, RoutineblockForm
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -142,3 +142,16 @@ class RoutineFormView(LoginRequiredMixin, FormView):
     #     if self.request.user.is_authenticated:
     #         initial.update({'user': self.request.user})
     #     return initial
+
+
+class RoutineBlockFormView(LoginRequiredMixin, FormView):
+    template_name = "gym/create_routine_block.html"
+    form_class = RoutineblockForm
+    success_url = "/gym"
+
+    def form_valid(self, form):
+        form = form.save(commit=False)
+        form.user = self.request.user
+        form.save()
+        return super().form_valid(form)
+    

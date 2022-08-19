@@ -24,8 +24,23 @@ class Equipment(models.Model):
 
 
 class Routine(models.Model):
+    LUNES = "lu"
+    MARTES = "ma"
+    MIERCOLES = "mi"
+    JUEVES = "ju"
+    VIERNES = "vi"
+
+    day_choices = [
+        (LUNES, "lunes"),
+        (MARTES, "martes"),
+        (MIERCOLES, "miercoles"),
+        (JUEVES, "jueves"),
+        (VIERNES, "viernes"),
+    ]
+
+
     title = models.CharField(max_length=200)
-    day = models.CharField(max_length=100)
+    day = models.CharField(max_length=100, choices=day_choices)
     content = models.TextField()
     is_completed = models.BooleanField(default=False)
     user = models.ManyToManyField("accounts.CustomUser")
@@ -39,6 +54,10 @@ class RoutineBlock(models.Model):
     TABATA = "tb"
     OTM = "ot"
 
+    BLOCK1 = "b1"
+    BLOCK2 = "b2"
+    BLOCK3 = "b3"
+
     routine_type_choices = [
         (METCON, "Metcon"),
         (AMRAP, "Amrap"),
@@ -46,8 +65,19 @@ class RoutineBlock(models.Model):
         (OTM, "OTM"),
     ]
 
+    routine_block_choices = [
+        (BLOCK1, "block 1"),
+        (BLOCK2, "block 2"),
+        (BLOCK3, "block 3"),
+
+    ]
+
+    name = models.CharField(max_length=100, choices=routine_block_choices)
     routine = models.ForeignKey(Routine, on_delete=models.CASCADE)
    # order = ver django-ordered-model
     exercises = models.ManyToManyField(Exercise)
-    classification = models.CharField(choices=routine_type_choices)
+    classification = models.CharField(max_length=200,  choices=routine_type_choices)
+
+    def __str__(self):
+        return self.name
 
