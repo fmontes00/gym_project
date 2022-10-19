@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "gym",
     "accounts",
+    "api",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
