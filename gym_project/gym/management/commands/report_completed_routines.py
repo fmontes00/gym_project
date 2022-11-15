@@ -8,8 +8,6 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         routines = Routine.objects.annotate()
 
-
-        #my_dict = {routine.user:routine.is_completed for routine in routines}
-
+        # my_dict = {routine.user:routine.is_completed for routine in routines}
 
         self.stdout.write(str(routines))

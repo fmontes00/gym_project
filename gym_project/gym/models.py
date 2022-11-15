@@ -38,7 +38,6 @@ class Routine(models.Model):
         (VIERNES, "viernes"),
     ]
 
-
     title = models.CharField(max_length=200)
     day = models.CharField(max_length=100, choices=day_choices)
     content = models.TextField()
@@ -48,9 +47,10 @@ class Routine(models.Model):
     def __str__(self):
         return self.title
 
+
 class RoutineBlock(models.Model):
     METCON = "mc"
-    AMRAP ="am"
+    AMRAP = "am"
     TABATA = "tb"
     OTM = "ot"
 
@@ -69,15 +69,13 @@ class RoutineBlock(models.Model):
         (BLOCK1, "block 1"),
         (BLOCK2, "block 2"),
         (BLOCK3, "block 3"),
-
     ]
 
     name = models.CharField(max_length=100, choices=routine_block_choices)
     routine = models.ForeignKey(Routine, on_delete=models.CASCADE)
-   # order = ver django-ordered-model
+    # order = ver django-ordered-model
     exercises = models.ManyToManyField(Exercise)
-    classification = models.CharField(max_length=200,  choices=routine_type_choices)
+    classification = models.CharField(max_length=200, choices=routine_type_choices)
 
     def __str__(self):
         return self.name
-

@@ -154,4 +154,3 @@ class RoutineBlockFormView(LoginRequiredMixin, FormView):
         form.user = self.request.user
         form.save()
         return super().form_valid(form)
-    

@@ -15,41 +15,116 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Equipment',
+            name="Equipment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('description', models.CharField(max_length=200)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                ("description", models.CharField(max_length=200)),
             ],
         ),
         migrations.CreateModel(
-            name='Exercise',
+            name="Exercise",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('description', models.CharField(max_length=200)),
-                ('equipment', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='gym.equipment')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                ("description", models.CharField(max_length=200)),
+                (
+                    "equipment",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="gym.equipment"
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Routine',
+            name="Routine",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=200)),
-                ('day', models.CharField(choices=[('lu', 'lunes'), ('ma', 'martes'), ('mi', 'miercoles'), ('ju', 'jueves'), ('vi', 'viernes')], max_length=100)),
-                ('content', models.TextField()),
-                ('is_completed', models.BooleanField(default=False)),
-                ('user', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=200)),
+                (
+                    "day",
+                    models.CharField(
+                        choices=[
+                            ("lu", "lunes"),
+                            ("ma", "martes"),
+                            ("mi", "miercoles"),
+                            ("ju", "jueves"),
+                            ("vi", "viernes"),
+                        ],
+                        max_length=100,
+                    ),
+                ),
+                ("content", models.TextField()),
+                ("is_completed", models.BooleanField(default=False)),
+                ("user", models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
-            name='RoutineBlock',
+            name="RoutineBlock",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(choices=[('b1', 'block 1'), ('b2', 'block 2'), ('b3', 'block 3')], max_length=100)),
-                ('classification', models.CharField(choices=[('mc', 'Metcon'), ('am', 'Amrap'), ('tb', 'Tabata'), ('ot', 'OTM')], max_length=200)),
-                ('exercises', models.ManyToManyField(to='gym.exercise')),
-                ('routine', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='gym.routine')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        choices=[
+                            ("b1", "block 1"),
+                            ("b2", "block 2"),
+                            ("b3", "block 3"),
+                        ],
+                        max_length=100,
+                    ),
+                ),
+                (
+                    "classification",
+                    models.CharField(
+                        choices=[
+                            ("mc", "Metcon"),
+                            ("am", "Amrap"),
+                            ("tb", "Tabata"),
+                            ("ot", "OTM"),
+                        ],
+                        max_length=200,
+                    ),
+                ),
+                ("exercises", models.ManyToManyField(to="gym.exercise")),
+                (
+                    "routine",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="gym.routine"
+                    ),
+                ),
             ],
         ),
     ]

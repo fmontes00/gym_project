@@ -1,7 +1,7 @@
 from dataclasses import fields
 from pyexpat import model
 from django.forms import ModelForm
-from .models import Equipment, Exercise, Routine , RoutineBlock
+from .models import Equipment, Exercise, Routine, RoutineBlock
 
 
 class ExerciseForm(ModelForm):
@@ -21,7 +21,8 @@ class RoutineForm(ModelForm):
         model = Routine
         fields = ["title", "day", "content", "is_completed"]
 
+
 class RoutineblockForm(ModelForm):
     class Meta:
         model = RoutineBlock
-        fields = ["routine", "classification","exercises"]
+        fields = ["routine", "classification", "exercises"]
