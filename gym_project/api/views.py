@@ -7,10 +7,9 @@ from rest_framework import status, viewsets, generics
 
 
 class ExerciseViewSet(viewsets.ViewSet):
-
     def list(self, request):
         exercises = Exercise.objects.all()
-        serializer = ExerciseSerializer(exercises, many = True)
+        serializer = ExerciseSerializer(exercises, many=True)
         return Response(serializer.data)
 
     def create(self, request):
@@ -18,24 +17,42 @@ class ExerciseViewSet(viewsets.ViewSet):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response({"detail": "Given payload is invalid"}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {"detail": "Given payload is invalid"}, status=status.HTTP_400_BAD_REQUEST
+        )
 
     def retrieve(self, request, pk=None):
         try:
-            exercise = Exercise.objects.get(id = pk)
+            exercise = Exercise.objects.get(id=pk)
         except Exercise.DoesNotExist:
-            return Response({"detail": "Exercise not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"detail": "Exercise not found"}, status=status.HTTP_404_NOT_FOUND
+            )
         serializer = ExerciseSerializer(exercise)
         return Response(serializer.data)
 
     def update(self, request, pk=None):
-        pass
+        try:
+            equipment = Exercise.objects.get(id=pk)
+        except Exercise.DoesNotExist:
+            return Response({"detail": "Exercise not found"}, status=status.HTTP_404_NOT_FOUND)
+        serializer = ExerciseSerializer(equipment, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def partial_update(self, request, pk=None):
         pass
 
     def destroy(self, request, pk=None):
-        pass
+        try:
+            equipment = Exercise.objects.get(id=pk)
+        except Exercise.DoesNotExist:
+            return Response({"detail":"Exercise not found"}, status=status.HTTP_404_NOT_FOUND)
+        equipment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 
 class EquipmentApiView(generics.ListAPIView):

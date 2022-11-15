@@ -12,12 +12,12 @@ from .views import (
 )
 
 
-router = DefaultRouter(trailing_slash = False)
-router.register(r'exercises', ExerciseViewSet, basename='exercise')
+router = DefaultRouter(trailing_slash=False)
+router.register(r"exercises", ExerciseViewSet, basename="exercise")
 
 urlpatterns = [
     # path("equipments/",EquipmentApiView.as_view(), name="equipment_list"),
-    #path("exercises", ExerciseViewSet, name="exercises"),
+    # path("exercises", ExerciseViewSet, name="exercises"),
     path("equi/", equipment_list, name="equi"),
     path("", include(router.urls))
     # path("eq/<int:pk>", equipment_retrieve, name="eq"),
