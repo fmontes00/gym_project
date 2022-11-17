@@ -35,7 +35,9 @@ class ExerciseViewSet(viewsets.ViewSet):
         try:
             equipment = Exercise.objects.get(id=pk)
         except Exercise.DoesNotExist:
-            return Response({"detail": "Exercise not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"detail": "Exercise not found"}, status=status.HTTP_404_NOT_FOUND
+            )
         serializer = ExerciseSerializer(equipment, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -49,11 +51,11 @@ class ExerciseViewSet(viewsets.ViewSet):
         try:
             equipment = Exercise.objects.get(id=pk)
         except Exercise.DoesNotExist:
-            return Response({"detail":"Exercise not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"detail": "Exercise not found"}, status=status.HTTP_404_NOT_FOUND
+            )
         equipment.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
 
 
 class EquipmentViewSet(viewsets.ViewSet):
@@ -62,15 +64,15 @@ class EquipmentViewSet(viewsets.ViewSet):
         serializer = EquipmentSerializer(equipment, many=True)
         return Response(serializer.data)
 
-
-    def retrieve(self, request, pk= None):
+    def retrieve(self, request, pk=None):
         try:
             equipment = Equipment.objects.get(id=pk)
         except Equipment.DoesNotExist:
-            return Response({"detail":"Equipment not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"detail": "Equipment not found"}, status=status.HTTP_404_NOT_FOUND
+            )
         serializer = EquipmentSerializer(equipment)
         return Response(serializer.data)
-
 
     def create(self, request):
         serializer = EquipmentSerializer(data=request.data)
@@ -80,13 +82,14 @@ class EquipmentViewSet(viewsets.ViewSet):
         return Response(
             {"detail": "Given payload is invalid"}, status=status.HTTP_400_BAD_REQUEST
         )
-        
 
-    def update(self, request, pk= None):
+    def update(self, request, pk=None):
         try:
             equipment = Equipment.objects.get(id=pk)
         except Equipment.DoesNotExist:
-            return Response({"detail": "Equipment not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"detail": "Equipment not found"}, status=status.HTTP_404_NOT_FOUND
+            )
         serializer = EquipmentSerializer(equipment, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -100,39 +103,11 @@ class EquipmentViewSet(viewsets.ViewSet):
         try:
             equipment = Equipment.objects.get(id=pk)
         except Equipment.DoesNotExist:
-            return Response({"detail":"Equipment not found"}, status=status.HTTP_404_NOT_FOUND)
+            return Response(
+                {"detail": "Equipment not found"}, status=status.HTTP_404_NOT_FOUND
+            )
         equipment.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # class EquipmentApiView(generics.ListAPIView):

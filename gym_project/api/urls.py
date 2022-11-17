@@ -8,12 +8,12 @@ from .views import (
 
 router = DefaultRouter(trailing_slash=False)
 router.register(r"exercises", ExerciseViewSet, basename="exercise")
-router.register(r"equipments",EquipmentViewSet, basename="equipment")
+router.register(r"equipments", EquipmentViewSet, basename="equipment")
 
 urlpatterns = [
     # path("equipments/",EquipmentApiView.as_view(), name="equipment_list"),
     # path("exercises", ExerciseViewSet, name="exercises"),
-    #path("equi/", equipment_list, name="equi"),
+    # path("equi/", equipment_list, name="equi"),
     path("", include(router.urls))
     # path("eq/<int:pk>", equipment_retrieve, name="eq"),
     # path("edit/<int:pk>", equipment_edition, name="edit"),
